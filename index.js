@@ -21,7 +21,9 @@ app.get("/", (req, res) => {
     .get(
       "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"
     )
-    .then((response) => res.send({ success: true, response: response.data }))
+    .then((response) =>
+      res.send({ success: true, response: response.data.items })
+    )
     .catch((error) => res.send({ success: false, message: error.message }));
 });
 
@@ -31,6 +33,8 @@ app.get("/:tags", (req, res) => {
     .get(
       `https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=${tags}`
     )
-    .then((response) => res.send({ success: true, response: response.data }))
+    .then((response) =>
+      res.send({ success: true, response: response.data.items })
+    )
     .catch((error) => res.send({ success: false, message: error.message }));
 });
