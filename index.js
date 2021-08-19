@@ -14,8 +14,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
 app.get("/", (req, res) => {
   axios
     .get(
@@ -38,3 +36,7 @@ app.get("/:tags", (req, res) => {
     )
     .catch((error) => res.send({ success: false, message: error.message }));
 });
+
+module.exports = app.listen(port, () =>
+  console.log(`Listening on port ${port}`)
+);
