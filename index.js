@@ -15,3 +15,13 @@ app.get("/", (req, res) => {
     .then((response) => res.send({ success: true, response: response.data }))
     .catch((error) => res.send({ success: false, message: error.message }));
 });
+
+app.get("/:tags", (req, res) => {
+  const tags = req.params.tags;
+  axios
+    .get(
+      `https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=${tags}`
+    )
+    .then((response) => res.send({ success: true, response: response.data }))
+    .catch((error) => res.send({ success: false, message: error.message }));
+});
